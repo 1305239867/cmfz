@@ -17,21 +17,24 @@
 		$(function(){
 			//点击更换验证码：
 			$("#captchaImage").click(function(){//点击更换验证码
-				alert("自己做");
+				//alert("自己做");
+                $("#captchaImage").prop("src", "getKaptcha.do?t=" + new Date().getTime());
+
 			});
 			
 			//  form 表单提交
-			$("#loginForm").bind("submit",function(){
-				alert("自己做");
+			/*$("#loginForm").bind("submit",function(){
+				//alert("自己做");
 				return false;
-			});
+
+			});*/
 		});
 	</script>
 </head>
 <body>
 	
 		<div class="login">
-			<form id="loginForm" action="../back/index.html" method="post" >
+			<form id="loginForm" action="${pageContext.request.contextPath}/login.do" method="post" >
 				
 				<table>
 					<tbody>
@@ -40,10 +43,10 @@
 								<img src="img/header_logo.gif" />
 							</td>
 							<th>
-								用户名:
+								手机号:
 							</th>
 							<td>
-								<input type="text"  name="user.name" class="text" value="xxx" maxlength="20"/>
+								<input type="text"  name="phonenum" class="text"  maxlength="20"/>
 							</td>
 					  </tr>
 					  <tr>
@@ -51,7 +54,7 @@
 								密&nbsp;&nbsp;&nbsp;码:
 							</th>
 							<td>
-								<input type="password" name="user.password" class="text" value="xxx" maxlength="20" autocomplete="off"/>
+								<input type="password" name="password" class="text"  maxlength="20" autocomplete="off"/>
 							</td>
 					  </tr>
 					
@@ -59,8 +62,8 @@
 							<td>&nbsp;</td>
 							<th>验证码:</th>
 							<td>
-								<input type="text" id="enCode" name="enCode" class="text captcha" maxlength="4" autocomplete="off"/>
-								<img id="captchaImage" class="captchaImage" src="img/captcha.jpg" title="点击更换验证码"/>
+								<input type="text" id="enCode" name="kaptcha" class="text captcha" maxlength="6" autocomplete="off"/>
+								<img id="captchaImage" class="captchaImage" src="${pageContext.request.contextPath}/getKaptcha.do" width="96" height="27" title="点击更换验证码"/>
 							</td>
 						</tr>					
 					<tr>
@@ -75,7 +78,7 @@
 						<td>&nbsp;</td>
 						<th>&nbsp;</th>
 						<td>
-							<input type="button" class="homeButton" value="" onclick="location.href='/'"><input type="submit" class="loginButton" value="登录">
+							<input type="button" class="homeButton"><input type="submit" class="loginButton" value="登录">
 						</td>
 					</tr>
 				</tbody></table>
